@@ -16,7 +16,7 @@ Um totem de baixo custo construído com princípios de Engenharia Frugal. O sist
 ## 💻 Como Rodar o Front-end (Ambiente de Desenvolvimento)
 
 1. Clone o repositório:
-`git clone https://github.com/SeuUsuario/nome-do-repo.git`
+`git clone https://github.com/FelipeSavazii/TCC-Automacao.git`
 
 2. Instale as dependências:
 `npm install`
@@ -27,7 +27,7 @@ Um totem de baixo custo construído com princípios de Engenharia Frugal. O sist
 4. Acesse `http://localhost:3000` no seu navegador.
 
 ## 👥 Equipe Técnica
-* **[Seu Nome]** - Lógica de Software (Back-end/Front-end)
-* **[Nome do Colega 1]** - Arquitetura Eletrônica
-* **[Nome do Colega 2]** - Estrutura Física / CAD
-* **[Nome do Colega 3]** - Integração de Hardware
+* **Felipe Savazi** - Lógica de Software (Back-end/Front-end)
+* **Julia Moreira** - Arquitetura Eletrônica
+* **Lara Moreira** - Estrutura Física / CAD
+* **Laura Vitória** - Integração de Hardware
