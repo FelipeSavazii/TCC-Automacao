@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Totem HTO
 
-## Getting Started
+> Hub de governança física e inteligência distribuída para instituições de ensino restritas ao uso de smartphones.
 
-First, run the development server:
+## 📌 O Problema
+Com a proibição legal do uso de celulares em ambiente escolar, os alunos perdem o canal principal de informações em tempo real (cronogramas, salas, avisos críticos). A comunicação volta a ser analógica e ineficiente.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 A Solução
+Um totem de baixo custo construído com princípios de Engenharia Frugal. O sistema utiliza a carteirinha estudantil física (código de barras 1D) como chave de acesso para um terminal que exibe, em até 5 segundos, a situação letiva do aluno e gera logs de presença em formato `.csv` para os docentes, dispensando integrações burocráticas com sistemas federais.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Stack Tecnológica
+* **Front-end & Landing Page:** Next.js + TailwindCSS
+* **Back-end & Lógica de Negócio:** Python (FastAPI/Flask - *a definir*)
+* **Hardware (IoT):** ESP32 + Display TFT SPI + Leitor Óptico GM65
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Como Rodar o Front-end (Ambiente de Desenvolvimento)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone o repositório:
+`git clone https://github.com/SeuUsuario/nome-do-repo.git`
 
-## Learn More
+2. Instale as dependências:
+`npm install`
 
-To learn more about Next.js, take a look at the following resources:
+3. Inicie o servidor de desenvolvimento:
+`npm run dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Acesse `http://localhost:3000` no seu navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👥 Equipe Técnica
+* **[Seu Nome]** - Lógica de Software (Back-end/Front-end)
+* **[Nome do Colega 1]** - Arquitetura Eletrônica
+* **[Nome do Colega 2]** - Estrutura Física / CAD
+* **[Nome do Colega 3]** - Integração de Hardware
