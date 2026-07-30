@@ -13,10 +13,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Totem HTO | Governança Escolar",
-  description: "Hub físico de inteligência distribuída para acesso a cronogramas e gestão de presença, eliminando a dependência de smartphones no campus.",
-  authors: [{ name: "Equipe de Automação Industrial" }],
-  keywords: ["Governança Escolar", "Automação", "IoT", "Tecnologia Frugal"],
+  title: "Life · Totem HTO | Governança Estudantil",
+  description:
+    "Esqueça o celular. Você não precisa dele. O Totem HTO é um hub físico que substitui o smartphone no ambiente escolar, entregando cronogramas e presença automatizada via leitura óptica da carteirinha.",
+  authors: [
+    { name: "Felipe Savazi" },
+    { name: "Julia Moreira" },
+    { name: "Lara Moreira" },
+    { name: "Laura Vitoria" },
+  ],
+  keywords: [
+    "Life",
+    "Totem HTO",
+    "Governança Escolar",
+    "Automação Industrial",
+    "IoT",
+    "Engenharia Frugal",
+    "Raspberry Pi",
+    "TCC",
+  ],
 };
 
 export default function RootLayout({
@@ -29,7 +44,9 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50">{children}</body>
+      <body className="min-h-full flex flex-col bg-white text-[#1A1A2E]">
+        {children}
+      </body>
     </html>
   );
 }
