@@ -1,387 +1,433 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { CURSOS, ROOMS } from '@/lib/types';
 
-/* ─── ICONS ─── */
-const IconGithub = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-  </svg>
-);
-const IconCheck = ({ size = 13, color = '#10b981' }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
-const IconZap = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="#ffffff">
-    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-  </svg>
-);
-const IconArrow = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-  </svg>
-);
-
-/* ─── FLOATING ORBS ─── */
-function FloatingOrbs() {
+function IconGithub({ size = 18 }: { size?: number }) {
   return (
-    <div className="hero-orbs" aria-hidden="true">
-      <div className="orb orb-joy"     style={{ width: '46vw', height: '46vw', top: '-12%',   right: '0%'  }} />
-      <div className="orb orb-sadness" style={{ width: '36vw', height: '36vw', top: '25%',    left: '-10%' }} />
-      <div className="orb orb-angry"   style={{ width: '28vw', height: '28vw', bottom: '-10%', right: '10%' }} />
-      <div className="orb orb-fear"    style={{ width: '22vw', height: '22vw', top: '15%',    left: '35%'  }} />
-      <div className="orb orb-disgust" style={{ width: '20vw', height: '20vw', bottom: '20%', left: '5%'   }} />
-      <div className="orb orb-envy"    style={{ width: '16vw', height: '16vw', top: '30%',    right: '32%' }} />
-    </div>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+    </svg>
   );
 }
 
-/* ─── DATA ─── */
+function IconArrowRight() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function IconSparkle() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z" />
+    </svg>
+  );
+}
+
 const softwareStack = [
-  { label: 'Front-end web',     tech: 'Next.js 16',        color: '#0070F3', bg: '#E6F0FD' },
-  { label: 'Lógica e back-end', tech: 'Python / API REST', color: '#3572A5', bg: '#EAF1F6' },
-  { label: 'Firmware',          tech: 'C / C++',           color: '#555555', bg: '#EEEEEE' },
-  { label: 'Integração LMS',    tech: 'API Moodle',        color: '#FF7A59', bg: '#FFF2EE' },
-  { label: 'Log de presença',   tech: 'CSV automático',    color: '#34A853', bg: '#EAF6EC' },
-];
-const hardwareStack = [
-  { label: 'Processamento',    tech: 'Raspberry Pi',        color: '#C51A4A', bg: '#F9E8EC' },
-  { label: 'Conectividade',    tech: 'Wi-Fi Onboard',       color: '#0070F3', bg: '#E6F0FD' },
-  { label: 'Entrada',          tech: 'Teclado físico',      color: '#333333', bg: '#EBEBEB' },
-  { label: 'Interface visual', tech: 'Display TFT ILI9341', color: '#9B59B6', bg: '#F5EEF8' },
-  { label: 'Custo total',      tech: 'R$ 225 – 340',        color: '#2ECC71', bg: '#EAFBF1' },
-];
-const team = [
-  { name: 'Felipe Savazi',  initials: 'FS', role: 'Hardware e firmware',      tags: ['Raspberry Pi','Python','C++'],  grad: 'linear-gradient(135deg,#fbbf24,#f97316)' },
-  { name: 'Julia Moreira',  initials: 'JM', role: 'Back-end Python e API',    tags: ['Python','REST','Moodle'],       grad: 'linear-gradient(135deg,#60a5fa,#34d399)' },
-  { name: 'Lara Moreira',   initials: 'LM', role: 'Front-end e UI/UX',        tags: ['Next.js','TypeScript','CSS'],   grad: 'linear-gradient(135deg,#d946ef,#f43f5e)' },
-  { name: 'Laura Vitoria',  initials: 'LV', role: 'Documentação e validação', tags: ['Pesquisa','CSV','Banca'],       grad: 'linear-gradient(135deg,#34d399,#22d3ee)' },
+  { label: 'Interface & Quiosque', tech: 'Next.js 16 · React 19' },
+  { label: 'Banco de dados', tech: 'MongoDB Atlas' },
+  { label: 'Comunicação ESP32', tech: 'HTTP POST + SSE' },
+  { label: 'Autenticação', tech: 'HT + 1º Acesso' },
+  { label: 'Cadastro em lote', tech: 'Planilhas .xlsx / .csv' },
 ];
 
-export default function App() {
+const hardwareStack = [
+  { label: 'Microcontrolador', tech: 'ESP32 / Arduino' },
+  { label: 'Conectividade', tech: 'USB Serial / Wi-Fi' },
+  { label: 'Painel físico', tech: 'Botões por curso e ano' },
+  { label: 'Botão dedicado', tech: 'Voltar (Vermelho)' },
+  { label: 'Exibição', tech: 'Monitor em modo Totem' },
+];
+
+const team = [
+  { name: 'Felipe Savazi', initials: 'FS', grad: 'from-amber-400 to-orange-500' },
+  { name: 'Julia Moreira', initials: 'JM', grad: 'from-sky-400 to-blue-600' },
+  { name: 'Lara Moreira', initials: 'LM', grad: 'from-fuchsia-500 to-rose-500' },
+  { name: 'Laura Vitória', initials: 'LV', grad: 'from-emerald-400 to-teal-500' },
+];
+
+export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 28);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div className="page-wrap">
-
-      {/* ════ NAV (Fully Responsive) ════ */}
-      <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
-        <div className="container">
-          <div className="nav-inner">
-            <a href="#" className="nav-logo">
-              <div className="nav-logo-icon">✨</div>
-              <span className="nav-logo-text">
-                Life<span className="nav-logo-sub">· Totem HTO</span>
-              </span>
-            </a>
-            <div className="nav-actions">
-              <span className="badge-mvp">
-                <span className="badge-mvp-dot" />MVP ativo
-              </span>
-              <button className="btn-nav">Acessar Dashboard</button>
-              <a href="https://github.com/FelipeSavazii/TCC-Automacao" target="_blank" rel="noopener noreferrer" className="btn-icon">
-                <IconGithub size={18} />
-              </a>
+    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] flex flex-col">
+      {/* ════ FLOATING APPLE NAVBAR ════ */}
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/80 backdrop-blur-2xl border-b border-black/[0.06] shadow-[0_1px_20px_rgba(0,0,0,0.04)]'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2.5 no-underline group">
+            <div className="w-8 h-8 rounded-[10px] bg-[#1d1d1f] text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition">
+              <IconSparkle />
             </div>
+            <span className="font-display font-bold text-[17px] tracking-tight text-[#1d1d1f]">
+              Life <span className="font-normal text-[#86868b] text-sm">· Totem HTO</span>
+            </span>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-7 text-[13px] font-medium text-[#6e6e73]">
+            <a href="#solucao" className="hover:text-[#1d1d1f] transition">
+              A Solução
+            </a>
+            <a href="#como-funciona" className="hover:text-[#1d1d1f] transition">
+              Como Funciona
+            </a>
+            <a href="#arquitetura" className="hover:text-[#1d1d1f] transition">
+              Arquitetura
+            </a>
+            <a href="#equipe" className="hover:text-[#1d1d1f] transition">
+              Equipe
+            </a>
+          </nav>
+
+          <div className="flex items-center gap-2.5">
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-[13px] font-semibold shadow-sm shadow-[#0071e3]/20 transition"
+            >
+              Acessar Dashboard
+            </Link>
+            <a
+              href="https://github.com/FelipeSavazii/TCC-Automacao"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Repositório GitHub"
+              className="w-9 h-9 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#1d1d1f] flex items-center justify-center transition"
+            >
+              <IconGithub size={17} />
+            </a>
           </div>
         </div>
-      </nav>
+      </header>
 
       {/* ════ HERO ════ */}
-      <section className="hero">
-        <FloatingOrbs />
-        <div className="hero-content">
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            TCC · Automação Industrial · IFSP
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        {/* Soft Cupertino Ambient Glow */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div
+            className="ambient-blob ambient-blob-a"
+            style={{
+              width: '44vw',
+              height: '44vw',
+              top: '-14%',
+              right: '-6%',
+              background: 'radial-gradient(circle, rgba(0,113,227,0.16) 0%, rgba(94,92,230,0.06) 65%, transparent 100%)',
+            }}
+          />
+          <div
+            className="ambient-blob ambient-blob-b"
+            style={{
+              width: '38vw',
+              height: '38vw',
+              bottom: '-12%',
+              left: '-8%',
+              background: 'radial-gradient(circle, rgba(255,159,10,0.14) 0%, rgba(255,59,48,0.05) 70%, transparent 100%)',
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-black/[0.06] text-[12px] font-semibold text-[#6e6e73] shadow-xs mb-7">
+            <span className="w-2 h-2 rounded-full bg-[#30d158]" />
+            TCC Automação Industrial · IFSP Hortolândia
           </div>
 
-          <h1 className="hero-h1">
-            Esqueça o celular.{' '}
-            <span style={{ color: '#6e6e73' }}>Você não precisa dele.</span>
+          <h1 className="font-display font-bold text-[42px] sm:text-[62px] lg:text-[76px] leading-[1.03] tracking-[-0.04em] text-[#1d1d1f] max-w-4xl mx-auto">
+            Avisos escolares.{' '}
+            <span className="text-[#86868b]">Sem precisar do celular.</span>
           </h1>
 
-          <p className="hero-subtitle">
-            O <strong>Life</strong> é um totem físico que centraliza tudo que o estudante precisa — sem smartphone, sem infração. O hub definitivo para governança escolar.
+          <p className="mt-6 text-[17px] sm:text-[20px] leading-[1.55] text-[#6e6e73] max-w-2xl mx-auto font-normal">
+            O <strong className="text-[#1d1d1f] font-semibold">Life</strong> conecta a Dashboard de professores e representantes a um totem físico com botões dedicados para cada turma — levando comunicados em tempo real aos corredores da escola.
           </p>
 
-          <div className="hero-ctas">
-            <button className="btn-primary" onClick={() => document.getElementById('solucao')?.scrollIntoView({ behavior: 'smooth' })}>
-              <IconZap />
-              Ver o projeto
-            </button>
-            <button className="btn-secondary">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-[15px] font-semibold shadow-lg shadow-[#0071e3]/25 transition hover:-translate-y-0.5"
+            >
               Acessar Dashboard
-              <IconArrow />
+              <IconArrowRight />
+            </Link>
+            <button
+              type="button"
+              onClick={() => document.getElementById('solucao')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white hover:bg-white/90 text-[#1d1d1f] text-[15px] font-semibold border border-black/[0.08] shadow-xs transition hover:-translate-y-0.5 cursor-pointer"
+            >
+              Conhecer o projeto
             </button>
           </div>
 
-          {/* Apple Bento Spec Grid */}
-          <div className="apple-spec-grid">
-            {[
-              { icon: '💰', val: 'R$ 225–340', sub: 'Custo do hardware', bg: 'rgba(251,191,36,0.12)' },
-              { icon: '⚡', val: '< 5 seg',    sub: 'Dados na tela',    bg: 'rgba(59,130,246,0.12)' },
-              { icon: '⚖️', val: '100% legal', sub: 'Sem infração',     bg: 'rgba(34,197,94,0.12)'  },
-              { icon: '📋', val: 'CSV auto',   sub: 'Log de presença',  bg: 'rgba(168,85,247,0.12)' },
-            ].map(s => (
-              <div className="apple-spec-card" key={s.val}>
-                <div className="apple-spec-icon" style={{ background: s.bg }}>{s.icon}</div>
-                <span className="apple-spec-val">{s.val}</span>
-                <span className="apple-spec-sub">{s.sub}</span>
+          {/* Sleek Hardware Preview Bento */}
+          <div className="mt-16 rounded-[32px] bg-[#0b0c10] text-white p-6 sm:p-8 border border-white/10 shadow-[0_32px_80px_rgba(0,0,0,0.18)] text-left">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-white/10">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#30d158]" />
+                <span className="text-xs font-semibold tracking-wide text-zinc-300">
+                  Cursos e Turmas no Totem · IFSP Hortolândia
+                </span>
               </div>
-            ))}
+              <span className="text-xs font-medium text-zinc-500">
+                1º, 2º e 3º Ano Integrado
+              </span>
+            </div>
+
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              {CURSOS.map((curso) => {
+                const courseRooms = ROOMS.filter((r) => r.curso === curso.id);
+                const dotColor =
+                  curso.accent === 'amber'
+                    ? 'bg-[#ff9f0a]'
+                    : curso.accent === 'blue'
+                      ? 'bg-[#0a84ff]'
+                      : 'bg-[#30d158]';
+                return (
+                  <div
+                    key={curso.id}
+                    className="rounded-2xl bg-white/[0.04] border border-white/[0.08] p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`w-2 h-2 rounded-full ${dotColor}`} />
+                      <span className="font-display font-bold text-sm text-white">
+                        {curso.label}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {courseRooms.map((room) => (
+                        <div
+                          key={room.turma}
+                          className="rounded-xl bg-white/[0.06] border border-white/[0.07] py-2 text-center text-xs font-semibold text-zinc-200"
+                        >
+                          {room.serieLabel}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs text-zinc-400">
+              <span>Aperte o botão físico da sua sala no gabinete do totem para ver os avisos ao vivo.</span>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff3b30]/20 border border-[#ff3b30]/50 text-[#ff6961] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#ff3b30]" />
+                Botão Vermelho · Voltar
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ════ PILARES ════ */}
-      <section className="section section-bg-soft section-border-top" id="solucao">
-        <div className="container">
-          <div className="section-header">
-            <p className="section-eyebrow">Arquitetura da solução</p>
-            <h2 className="section-title">Três pilares,<br />uma solução.</h2>
-            <p className="section-subtitle">Do hardware frugal ao software premium — tudo pensado para o contexto escolar real.</p>
+      <section id="solucao" className="py-24 bg-white border-t border-black/[0.05]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0071e3] mb-3">
+              Arquitetura da solução
+            </p>
+            <h2 className="font-display font-bold text-[34px] sm:text-[48px] leading-[1.08] tracking-[-0.035em] text-[#1d1d1f]">
+              Simples para o aluno.{' '}
+              <span className="text-[#86868b]">Instantâneo para a escola.</span>
+            </h2>
           </div>
-          <div className="pillar-grid">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { emoji: '📵', title: 'Governança sem telas',  desc: 'Respeita a legislação de restrição de smartphones. Os alunos mantêm acesso a dados acadêmicos sem infringir regras.', decoColor: 'rgba(251,191,36,0.15)' },
-              { emoji: '⚡', title: 'Info em 5 segundos',    desc: 'Fim da desinformação sobre provas e avisos. Interface projetada para leitura ultrarrápida nos corredores.',           decoColor: 'rgba(59,130,246,0.12)'  },
-              { emoji: '🪪', title: 'Integração frugal',     desc: 'Sem cadastros, sem senha. O aluno usa o teclado para selecionar a sala e ver as informações instantaneamente.',        decoColor: 'rgba(34,197,94,0.12)'   },
-            ].map(p => (
-              <div className="pillar-card glass-panel" key={p.title}>
-                <div className="pillar-card-deco" style={{ background: p.decoColor }} />
-                <div className="pillar-card-emoji">{p.emoji}</div>
-                <h3 className="pillar-card-title">{p.title}</h3>
-                <p className="pillar-card-desc">{p.desc}</p>
+              {
+                tag: '01 · Conformidade',
+                title: 'Informação sem smartphone',
+                desc: 'Respeita integralmente a restrição de celulares no campus. Estudantes consultam trocas de sala, provas e comunicados urgentes diretamente nos corredores.',
+              },
+              {
+                tag: '02 · Interação física',
+                title: 'Botões por turma + Voltar',
+                desc: 'Botões físicos dedicados no gabinete para Automação, Informática e Mecânica (1º ao 3º ano) e um botão vermelho dedicado para voltar à tela inicial.',
+              },
+              {
+                tag: '03 · Gestão segura',
+                title: 'Dashboard por HT e Planilha',
+                desc: 'Professores, técnicos administrativos, representantes e administradores acessam com HT pessoal — com importação inteligente de planilhas e primeiro acesso sem senha.',
+              },
+            ].map((item) => (
+              <div
+                key={item.tag}
+                className="apple-card apple-card-hover rounded-[28px] p-8 flex flex-col gap-4 bg-[#f5f5f7]/60"
+              >
+                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#86868b]">
+                  {item.tag}
+                </span>
+                <h3 className="font-display font-bold text-[22px] tracking-[-0.025em] text-[#1d1d1f]">
+                  {item.title}
+                </h3>
+                <p className="text-[15px] leading-relaxed text-[#6e6e73]">{item.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════ PROBLEMA & PERSONA (Apple Bento Story) ════ */}
-      <section className="section section-bg-white section-border-top">
-        <div className="container">
-          <div className="section-header-center">
-            <p className="section-eyebrow">A História Real</p>
-            <h2 className="section-title">Um dia de aula. Três fricções.</h2>
-            <p className="section-subtitle">Sem o celular no bolso, a busca por informações acadêmicas virou uma corrida contra o tempo nos corredores do IFSP.</p>
-          </div>
-
-          <div className="problem-bento">
-            {/* Card 1: Persona Quote */}
-            <div className="persona-profile-card">
-              <span className="persona-badge">RELATO DO ESTUDANTE</span>
-              <p className="persona-quote">
-                "Cheguei na sala errada porque o mural da entrada estava desatualizado há dias. Sem celular para checar no grupo, perdi chamada e fiquei totalmente perdido."
-              </p>
-              <div className="persona-user">
-                <div className="persona-avatar">F</div>
-                <div>
-                  <p className="persona-name">Felipe Savazi</p>
-                  <p className="persona-role">Técnico em Automação Industrial · IFSP Hortolândia</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Pain Metric */}
-            <div className="problem-metric-card">
-              <div className="problem-metric-bg">3x</div>
-              <p className="problem-metric-eyebrow">A Dor em Números</p>
-              <p className="problem-metric-val">3x por dia</p>
-              <p className="problem-metric-label">Vezes que um aluno precisa confirmar a sala de aula</p>
-              <p className="problem-metric-desc">Com a restrição legal de smartphones, estudantes enfrentam murais desatualizados e desinformação frequente.</p>
-            </div>
-
-            {/* Card 3: Timeline Horizontal Bento (Apple Spec) */}
-            <div className="timeline-card">
-              <div className="timeline-title-row">
-                <div>
-                  <span className="timeline-tag">⚡ A JORNADA DO ESTUDANTE</span>
-                  <h3 style={{ fontFamily: 'var(--font-space), sans-serif', fontWeight: 800, fontSize: 22, letterSpacing: '-0.03em', color: '#1d1d1f', marginTop: 4 }}>
-                    O contraste entre o caos e a autonomia.
-                  </h3>
-                </div>
-                <span style={{ fontSize: 13, fontWeight: 500, color: '#86868b' }}>Da desinformação à velocidade de <strong style={{ color: '#10b981' }}>&lt; 5s</strong></span>
-              </div>
-
-              <div className="timeline-progress-bar" />
-
-              <div className="timeline-steps">
-                <div className="timeline-step">
-                  <div className="timeline-step-header">
-                    <span className="timeline-pill amber">🚶 07:45</span>
-                    <span style={{ fontSize: 16 }}>📋</span>
-                  </div>
-                  <p className="timeline-step-title">Mural Impresso</p>
-                  <p className="timeline-step-desc">Chega ao campus. O mural impresso de papel na entrada tem o horário da semana passada.</p>
-                  <span className="timeline-badge-status">⚠️ Informação Retrógrada</span>
-                </div>
-
-                <div className="timeline-step">
-                  <div className="timeline-step-header">
-                    <span className="timeline-pill blue">👥 07:52</span>
-                    <span style={{ fontSize: 16 }}>🏃</span>
-                  </div>
-                  <p className="timeline-step-title">Busca nos Corredores</p>
-                  <p className="timeline-step-desc">Sem celular liberado, precisa andar entre blocos perguntando pessoalmente para colegas.</p>
-                  <span className="timeline-badge-status">⌛ Perda de Tempo</span>
-                </div>
-
-                <div className="timeline-step">
-                  <div className="timeline-step-header">
-                    <span className="timeline-pill red">🚫 08:04</span>
-                    <span style={{ fontSize: 16 }}>❌</span>
-                  </div>
-                  <p className="timeline-step-title">Sala Errada & Atraso</p>
-                  <p className="timeline-step-desc">Entra no bloco errado. A aula era no laboratório 18. Perde a chamada e o conteúdo.</p>
-                  <span className="timeline-badge-status">🚨 Prejuízo Acadêmico</span>
-                </div>
-
-                <div className="timeline-step active-life">
-                  <div className="timeline-step-header">
-                    <span className="timeline-pill emerald">✨ COM O LIFE</span>
-                    <span style={{ fontSize: 16 }}>⚡</span>
-                  </div>
-                  <p className="timeline-step-title">5 Segundos no Totem</p>
-                  <p className="timeline-step-desc">Digita a turma no teclado físico. Display TFT mostra a sala exata instantaneamente.</p>
-                  <span className="timeline-badge-status">✅ Eficiência Absoluta</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* ════ COMO FUNCIONA ════ */}
-      <section className="section section-bg-soft section-border-top">
-        <div className="container">
-          <div className="section-header-center">
-            <p className="section-eyebrow">Como funciona</p>
-            <h2 className="section-title">Três passos. Cinco segundos.</h2>
-            <p className="section-subtitle">Do teclado do totem ao dado na tela — sem fricção.</p>
+      <section id="como-funciona" className="py-24 bg-[#f5f5f7] border-t border-black/[0.05]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0071e3] mb-3">
+              Fluxo em tempo real
+            </p>
+            <h2 className="font-display font-bold text-[34px] sm:text-[48px] leading-[1.08] tracking-[-0.035em] text-[#1d1d1f]">
+              Publicou na Dashboard. Apareceu no Totem.
+            </h2>
           </div>
-          
-          <div className="apple-steps-grid">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { num: 'PASSO 01', icon: '⌨️', title: 'Seleção Rápida',     desc: 'O aluno digita a sala ou turma no teclado físico do totem sem precisar de login.', iconBg: '#fef3c7' },
-              { num: 'PASSO 02', icon: '🧠', title: 'Processamento Pi',  desc: 'O Raspberry Pi processa o código localmente e consulta o banco de dados em milissegundos.', iconBg: '#e0f2fe' },
-              { num: 'PASSO 03', icon: '🖥️', title: 'Exibição & Presença', desc: 'Display TFT ilumina o cronograma e o Python salva a presença em CSV automaticamente.', iconBg: '#dcfce7' },
-            ].map(s => (
-              <div className="apple-step-card" key={s.num}>
-                <div className="apple-step-top">
-                  <span className="apple-step-num">{s.num}</span>
-                  <div className="apple-step-icon" style={{ background: s.iconBg }}>{s.icon}</div>
-                </div>
-                <h3 className="apple-step-title">{s.title}</h3>
-                <p className="apple-step-desc">{s.desc}</p>
+              {
+                step: 'Passo 1',
+                title: 'Aviso publicado',
+                desc: 'Um professor, técnico ou representante faz login com seu HT e cadastra um aviso para uma turma específica ou para todo o campus.',
+              },
+              {
+                step: 'Passo 2',
+                title: 'Sincronização ao vivo',
+                desc: 'O aviso é salvo no MongoDB Atlas e transmitido imediatamente para a tela do totem via Server-Sent Events (SSE), sem recarregar o navegador.',
+              },
+              {
+                step: 'Passo 3',
+                title: 'Leitura em 1 clique físico',
+                desc: 'No corredor, o aluno aperta o botão físico da sua sala no painel do totem e lê o aviso em segundos. O botão vermelho retorna ao início.',
+              },
+            ].map((s) => (
+              <div key={s.step} className="apple-card rounded-[28px] p-8 flex flex-col gap-3">
+                <span className="inline-flex w-fit px-3 py-1 rounded-full bg-[#f5f5f7] text-[11px] font-bold uppercase tracking-wider text-[#6e6e73]">
+                  {s.step}
+                </span>
+                <h3 className="font-display font-bold text-[21px] tracking-[-0.02em] text-[#1d1d1f]">
+                  {s.title}
+                </h3>
+                <p className="text-[15px] leading-relaxed text-[#6e6e73]">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ════ STACK ════ */}
-      <section className="section section-bg-white section-border-top">
-        <div className="container">
-          <div className="section-header">
-            <p className="section-eyebrow">Stack tecnológica</p>
-            <h2 className="section-title">O motor por dentro.</h2>
-            <p className="section-subtitle">Tecnologias escolhidas pela robustez e custo acessível para um projeto de TCC real.</p>
+      {/* ════ ARQUITETURA / STACK ════ */}
+      <section id="arquitetura" className="py-24 bg-white border-t border-black/[0.05]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0071e3] mb-3">
+              Engenharia
+            </p>
+            <h2 className="font-display font-bold text-[34px] sm:text-[48px] leading-[1.08] tracking-[-0.035em] text-[#1d1d1f]">
+              Software moderno.{' '}
+              <span className="text-[#86868b]">Hardware direto ao ponto.</span>
+            </h2>
           </div>
-          
-          <div className="stack-layout">
 
-            {/* Software column */}
-            <div className="stack-col">
-              <div className="stack-col-header">
-                <div className="stack-col-icon" style={{ background: '#eef2ff' }}>💻</div>
-                <div>
-                  <p className="stack-col-title">Software</p>
-                  <p className="stack-col-sub">Stack de desenvolvimento</p>
-                </div>
-              </div>
-              <div className="stack-list">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-4 apple-card rounded-[28px] p-7 bg-[#f5f5f7]/60">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#86868b] mb-1">
+                Camada Web & Dados
+              </p>
+              <h3 className="font-display font-bold text-xl mb-5">Software</h3>
+              <div className="space-y-2.5">
                 {softwareStack.map((item) => (
-                  <div className="stack-item" key={item.label}>
-                    <span className="stack-item-label">{item.label}</span>
-                    <span className="stack-item-badge" style={{ color: item.color, background: item.bg, borderColor: item.color + '30' }}>
-                      {item.tech}
-                    </span>
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-white border border-black/[0.05]"
+                  >
+                    <span className="text-xs font-semibold text-[#6e6e73]">{item.label}</span>
+                    <span className="text-xs font-bold text-[#1d1d1f]">{item.tech}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Hardware column */}
-            <div className="stack-col">
-              <div className="stack-col-header">
-                <div className="stack-col-icon" style={{ background: '#fff1f2' }}>🔧</div>
-                <div>
-                  <p className="stack-col-title">Hardware</p>
-                  <p className="stack-col-sub">Componentes físicos (BOM)</p>
-                </div>
-              </div>
-              <div className="stack-list">
+            <div className="lg:col-span-4 apple-card rounded-[28px] p-7 bg-[#f5f5f7]/60">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#86868b] mb-1">
+                Eletrônica Embarcada
+              </p>
+              <h3 className="font-display font-bold text-xl mb-5">Hardware</h3>
+              <div className="space-y-2.5">
                 {hardwareStack.map((item) => (
-                  <div className="stack-item" key={item.label}>
-                    <span className="stack-item-label">{item.label}</span>
-                    <span className="stack-item-badge" style={{ color: item.color, background: item.bg, borderColor: item.color + '30' }}>
-                      {item.tech}
-                    </span>
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-white border border-black/[0.05]"
+                  >
+                    <span className="text-xs font-semibold text-[#6e6e73]">{item.label}</span>
+                    <span className="text-xs font-bold text-[#1d1d1f]">{item.tech}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* CTA dark */}
-            <div className="stack-cta">
-              <div className="stack-cta-bg" />
-              <div className="stack-cta-inner">
-                <p className="stack-cta-eyebrow">Custo total do hardware</p>
-                <p className="stack-cta-price">
-                  R$ 225<span className="stack-cta-price-sep"> – </span>340
+            <div className="lg:col-span-4 rounded-[28px] bg-[#1d1d1f] text-white p-8 flex flex-col justify-between shadow-[0_24px_60px_rgba(0,0,0,0.16)]">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-400 mb-3">
+                  Painel Administrativo
                 </p>
-                <p className="stack-cta-desc">BOM estimado com componentes modulares e acessíveis, focado em frugalidade.</p>
-                <div className="stack-cta-items">
-                  {['Tela TFT ILI9341', 'Teclado físico', 'Raspberry Pi'].map(item => (
-                    <div className="stack-cta-item" key={item}>
-                      <div className="stack-cta-check"><IconCheck size={14} /></div>
-                      <span className="stack-cta-item-text">{item}</span>
-                    </div>
-                  ))}
-                </div>
+                <h3 className="font-display font-bold text-3xl tracking-tight leading-tight">
+                  Pronto para publicar avisos.
+                </h3>
+                <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+                  Entre com seu prontuário HT para gerenciar avisos por turma e cadastrar pessoas em lote via planilha.
+                </p>
               </div>
-            </div>
 
+              <Link
+                href="/dashboard"
+                className="mt-8 inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-full bg-white hover:bg-zinc-100 text-[#1d1d1f] font-semibold text-sm transition"
+              >
+                Acessar Dashboard
+                <IconArrowRight />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ════ EQUIPE ════ */}
-      <section className="section section-bg-soft section-border-top">
-        <div className="container">
-          <div className="section-header-center">
-            <p className="section-eyebrow">A Equipe</p>
-            <h2 className="section-title">Quem faz o Life acontecer.</h2>
-            <p className="section-subtitle">Estudantes de Automação Industrial — Turma TCC 2026, IFSP.</p>
+      <section id="equipe" className="py-24 bg-[#f5f5f7] border-t border-black/[0.05]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-xl mx-auto mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0071e3] mb-3">
+              A Equipe
+            </p>
+            <h2 className="font-display font-bold text-[34px] sm:text-[44px] leading-[1.08] tracking-[-0.035em] text-[#1d1d1f]">
+              Quem faz o Life acontecer.
+            </h2>
+            <p className="mt-3 text-[15px] text-[#6e6e73]">
+              Automação Industrial · Turma TCC 2026 · IFSP Hortolândia
+            </p>
           </div>
-          <div className="team-grid">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {team.map((m) => (
-              <div className="team-card glass-panel" key={m.name}>
-                <div className="team-avatar" style={{ background: m.grad }}>{m.initials}</div>
-                <h3 className="team-name">{m.name}</h3>
-                <p className="team-role">{m.role}</p>
-                <div className="team-tags">
-                  {m.tags.map(t => <span className="team-tag" key={t}>{t}</span>)}
+              <div
+                key={m.name}
+                className="apple-card apple-card-hover rounded-[28px] p-7 flex flex-col items-center justify-center text-center"
+              >
+                <div
+                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${m.grad} text-white font-display font-bold text-xl flex items-center justify-center shadow-md mb-4`}
+                >
+                  {m.initials}
                 </div>
+                <h3 className="font-display font-bold text-[17px] text-[#1d1d1f]">{m.name}</h3>
               </div>
             ))}
           </div>
@@ -389,47 +435,31 @@ export default function App() {
       </section>
 
       {/* ════ FOOTER ════ */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-inner">
-            <div className="footer-brand">
-              <a href="#" className="footer-logo">
-                <div className="footer-logo-icon">✨</div>
-                <span className="footer-logo-text">Life <span style={{ color: '#a1a1aa', fontWeight: 400, fontSize: 14 }}>· Totem HTO</span></span>
-              </a>
-              <p className="footer-brand-desc">Redefinindo a governança acadêmica e a comunicação escolar sem a dependência de smartphones.</p>
-              <div className="footer-social">
-                <a href="https://github.com/FelipeSavazii/TCC-Automacao" target="_blank" rel="noopener noreferrer" className="footer-social-btn">
-                  <IconGithub size={18} />
-                </a>
-              </div>
-            </div>
-            <div className="footer-links">
-              <div className="footer-links-col">
-                <h4>Projeto</h4>
-                <ul>
-                  <li><a href="#solucao">A Solução</a></li>
-                  <li><a href="#">Tecnologia</a></li>
-                  <li><a href="#">Roadmap</a></li>
-                </ul>
-              </div>
-              <div className="footer-links-col">
-                <h4>Acesso</h4>
-                <ul>
-                  <li><a href="#">Dashboard (Admin)</a></li>
-                  <li><a href="https://github.com/FelipeSavazii/TCC-Automacao" target="_blank" rel="noopener noreferrer">Github Repo</a></li>
-                  <li><a href="#">Documentação</a></li>
-                </ul>
-              </div>
-            </div>
+      <footer className="bg-white border-t border-black/[0.06] py-12 mt-auto">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#86868b]">
+          <div className="flex items-center gap-2.5">
+            <span className="font-display font-bold text-sm text-[#1d1d1f]">Life · Totem HTO</span>
+            <span>·</span>
+            <span>IFSP Hortolândia</span>
           </div>
-          <div className="footer-bottom">
-            <span>© 2026 Life Totem HTO. Todos os direitos reservados.</span>
-            <span>Criado para o IFSP Hortolândia.</span>
+          <div className="flex items-center gap-5 font-medium">
+            <Link href="/dashboard" className="hover:text-[#1d1d1f] transition">
+              Dashboard
+            </Link>
+            <Link href="/login" className="hover:text-[#1d1d1f] transition">
+              Login HT
+            </Link>
+            <a
+              href="https://github.com/FelipeSavazii/TCC-Automacao"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#1d1d1f] transition"
+            >
+              GitHub
+            </a>
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
